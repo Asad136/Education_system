@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>View Lessons</title>
+</head>
+<body>
+    <h1>Lessons</h1>
+    <ul>
+        {% for lesson in lessons %}
+            <li>{{ lesson.name }} - {{ lesson.cohort.name }}</li>
+        {% empty %}
+            <li>No lessons available.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Assign Student to Cohort</title>
+</head>
+<body>
+    <h2>Assign Student to Cohort</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Assign</button>
+  </form>
+</body>
+</html>

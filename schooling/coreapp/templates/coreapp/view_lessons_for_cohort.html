@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lessons for {{ cohort.name }}</title>
+</head>
+<body>
+    <h1>Lessons for {{ cohort.name }}</h1>
+    <ul>
+        {% for lesson in lessons %}
+            <li>
+                <a href="{% url 'view_questions_for_lesson' lesson.id %}">{{lesson.name}}</a>
+            </li>
+        {% empty %}
+            <li>No lessons available for this Class.</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'view_cohorts' %}">Back to Classes</a>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!-- templates/coreapp/view_questions_for_lesson.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Questions for {{ lesson.name }}</title>
+</head>
+<body>
+    <h1>Questions for {{ lesson.name }}</h1>
+
+    {% for question in questions %}
+        <div>
+            <h2>{{ question.statement }}</h2>
+            
+            {% if question.questiontruefalse %}
+                <h3>True/False</h3>
+                <p>Answer: {% if question.questiontruefalse.answer %} True {% else %} False {% endif %}</p>
+            {% elif question.questionmcqs %}
+                <h3>Multiple Choice</h3>
+                <ul>
+                    <li>A: {{ question.questionmcqs.option_a }}</li>
+                    <li>B: {{ question.questionmcqs.option_b }}</li>
+                    <li>C: {{ question.questionmcqs.option_c }}</li>
+                    <li>D: {{ question.questionmcqs.option_d }}</li>
+                </ul>
+                <p>Answer: {{ question.questionmcqs.answer }}</p>
+            {% elif question.questionfillinblank %}
+                <h3>Fill in the Blank</h3>
+                <p>Answer: {{ question.questionfillinblank.answer }}</p>
+            {% endif %}
+        </div>
+    {% empty %}
+        <p>No questions available for this lesson.</p>
+    {% endfor %}
+
+    <a href="{% url 'view_lessons' %}">Back to Lessons</a>
+</body>
+</html>

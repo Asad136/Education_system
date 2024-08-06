@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Question</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Create Question</h1>
+    <form method="post" action="{% url 'create_question' %}">
+        {% csrf_token %}
+        {{ question_form.as_p }}
+
+        <!-- Dropdown to select question type -->
+        <label for="question_type">Question Type:</label>
+        <select id="question_type" name="type">
+            <option value="">Select a type</option>
+            <option value="truefalse">True/False</option>
+            <option value="mcqs">Multiple Choice</option>
+            <option value="fill_in_blank">Fill in the Blank</option>
+        </select>
+
+        <!-- Container for dynamic form rendering -->
+        <div id="dynamic_form"></div>
+
+        <button type="submit">Save Question</button>
+    </form>
+
+    <script>
+        $(document).ready(function() {
+            $('#question_type').change(function() {
+                var type = $(this).val();
+                
+                if (type) {
+                    $.ajax({
+                        url: "{% url 'ajax_load_form' %}",
+                        data: {
+                            'type': type
+                        },
+                        success: function(data) {
+                            $('#dynamic_form').html(data.html_form);
+                        }
+                    });
+                } else {
+                    $('#dynamic_form').html('');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>View Classes</title>
+</head>
+<body>
+    <h1>Classes</h1>
+    <ul>
+        {% for cohort in cohorts %}
+        <li><a href="{% url 'view_lessons_for_cohort' cohort.id %}">{{ cohort.name }}</a></li>
+        {% empty %}
+            <li>No Classes available.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
