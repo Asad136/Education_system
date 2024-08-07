@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ cohort.name }} Lessons</title>
+</head>
+<body>
+    <h2>Lessons in {{ cohort.name }}</h2>
+    <ul>
+        {% for lesson in lessons %}
+            <li><a href="{% url 'student_questions' lesson.id %}">{{ lesson.name }}</a></li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
+
+
+
+

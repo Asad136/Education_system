@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Questions for {{ lesson.name }}</title>
+</head>
+<body>
+    <h1>Questions for {{ lesson.name }}</h1>
+    <form method="post">
+        {% csrf_token %}
+        {% for question in questions %}
+            <div>
+
+                {% if question.type == 'truefalse' %}
+                <h2>True/False</h2>
+                    <h3>{{ question.statement }}</h3>
+                    
+
+                {% elif question.type == 'mcqs' %}
+                <h2>Multiple Choice</h2>
+                    <h3>{{ question.statement }}</h3>
+
+                    <ul>
+                        <li>A: {{ question.questionmcqs.option_a }}</li>
+                        <li>B: {{ question.questionmcqs.option_b }}</li>
+                        <li>C: {{ question.questionmcqs.option_c }}</li>
+                        <li>D: {{ question.questionmcqs.option_d }}</li>
+                    </ul>
+                    
+
+                {% elif question.type == 'fill_in_blank' %}
+                <h2>Fill in the Blank</h2>
+                    <h3>{{ question.statement }}</h3>
+                {% endif %}
+            </div>
+        {% endfor %}
+        <button type="submit">Submit</button>
+    </form>
+    <a href="{% url 'student_lessons' lesson.cohort.id %}">Back to Lessons</a>
+</body>
+</html>

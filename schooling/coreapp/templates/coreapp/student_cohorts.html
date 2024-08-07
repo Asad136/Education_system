@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Cohorts</title>
+</head>
+<body>
+    <h2>My Cohorts</h2>
+    <ul>
+        {% for assign in assigned_cohorts %}
+            <li><a href="{% url 'student_lessons' assign.cohort.id %}">{{ assign.cohort.name }}</a></li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

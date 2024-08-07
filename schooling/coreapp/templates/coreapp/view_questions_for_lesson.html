@@ -1,37 +1,60 @@
-<!-- templates/coreapp/view_questions_for_lesson.html -->
 <!DOCTYPE html>
 <html>
 <head>
     <title>Questions for {{ lesson.name }}</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('#questionForm').on('submit', function(event){
+                event.preventDefault();
+                $.ajax({
+                    url: "{% url 'submit_answers' lesson.id %}",
+                    method: "POST",
+                    data: $(this).serialize(),
+                    success: function(data){
+                        if (data.success) {
+                            alert('Answers submitted successfully!');
+                        } else {
+                            alert('There was an error submitting your answers.');
+                        }
+                    },
+                    error: function(){
+                        alert('An unexpected error occurred.');
+                    }
+                });
+            });
+        });
+    </script>
 </head>
 <body>
     <h1>Questions for {{ lesson.name }}</h1>
-
-    {% for question in questions %}
-        <div>
-            <h2>{{ question.statement }}</h2>
-            
-            {% if question.questiontruefalse %}
-                <h3>True/False</h3>
-                <p>Answer: {% if question.questiontruefalse.answer %} True {% else %} False {% endif %}</p>
-            {% elif question.questionmcqs %}
-                <h3>Multiple Choice</h3>
-                <ul>
-                    <li>A: {{ question.questionmcqs.option_a }}</li>
-                    <li>B: {{ question.questionmcqs.option_b }}</li>
-                    <li>C: {{ question.questionmcqs.option_c }}</li>
-                    <li>D: {{ question.questionmcqs.option_d }}</li>
-                </ul>
-                <p>Answer: {{ question.questionmcqs.answer }}</p>
-            {% elif question.questionfillinblank %}
-                <h3>Fill in the Blank</h3>
-                <p>Answer: {{ question.questionfillinblank.answer }}</p>
-            {% endif %}
-        </div>
-    {% empty %}
-        <p>No questions available for this lesson.</p>
-    {% endfor %}
-
-    <a href="{% url 'view_lessons' %}">Back to Lessons</a>
+    <form id="questionForm" method="post">
+        {% csrf_token %}
+        {% for question in questions %}
+            <div>
+                {% if question.type == 'truefalse' %}
+                    <h2>True/False</h2>
+                    <h3>{{ question.statement }}</h3>
+                    <input type="radio" name="question_{{ question.id }}" value="True"> True
+                    <input type="radio" name="question_{{ question.id }}" value="False"> False
+                {% elif question.type == 'mcqs' %}
+                    <h2>Multiple Choice</h2>
+                    <h3>{{ question.statement }}</h3>
+                    <ul>
+                        <li><input type="radio" name="question_{{ question.id }}" value="A"> A: {{ question.questionmcqs.option_a }}</li>
+                        <li><input type="radio" name="question_{{ question.id }}" value="B"> B: {{ question.questionmcqs.option_b }}</li>
+                        <li><input type="radio" name="question_{{ question.id }}" value="C"> C: {{ question.questionmcqs.option_c }}</li>
+                        <li><input type="radio" name="question_{{ question.id }}" value="D"> D: {{ question.questionmcqs.option_d }}</li>
+                    </ul>
+                {% elif question.type == 'fill_in_blank' %}
+                    <h2>Fill in the Blank</h2>
+                    <h3>{{ question.statement }}</h3>
+                    <input type="text" name="question_{{ question.id }}">
+                {% endif %}
+            </div>
+        {% endfor %}
+        <button type="submit">Submit</button>
+    </form>
+    <a href="{% url 'student_lessons' lesson.cohort.id %}">Back to Lessons</a>
 </body>
 </html>
