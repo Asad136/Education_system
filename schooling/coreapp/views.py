@@ -220,7 +220,19 @@ def submit_answers(request, lesson_id):
             )
             if correct:
                 total_score += 1
+                print(total_score)
 
         return JsonResponse({'success': True, 'total_score': total_score})
     return JsonResponse({'success': False})
 
+@login_required
+def view_results(request, lesson_id):
+    lesson = get_object_or_404(Lesson, id=lesson_id)
+    total_score = request.GET.get('score', 0)
+    score_results = ScoreResult.objects.filter(lesson=lesson, user=request.user)
+
+    return render(request, 'coreapp/view_results.html', {
+        'lesson': lesson,
+        'total_score': total_score,
+        'score_results': score_results,
+    })

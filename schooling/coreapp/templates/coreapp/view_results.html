@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Results for {{ lesson.name }}</title>
+</head>
+<body>
+    <h1>Results for {{ lesson.name }}</h1>
+    <p>Total Score: {{ total_score }}</p>
+    <h2>Question Scores:</h2>
+    <ul>
+        {% for result in score_results %}
+            <li>{{ result.question.statement }}: {{ result.marks }} marks</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'student_lessons' lesson.cohort.id %}">Back to Lessons</a>
+</body>
+</html>

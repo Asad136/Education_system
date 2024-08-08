@@ -13,7 +13,7 @@
                     data: $(this).serialize(),
                     success: function(data){
                         if (data.success) {
-                            alert('Answers submitted successfully!');
+                            window.location.href = "{% url 'view_results' lesson.id %}?score=" + data.total_score;
                         } else {
                             alert('There was an error submitting your answers.');
                         }

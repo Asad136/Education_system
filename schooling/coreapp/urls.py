@@ -15,6 +15,7 @@ urlpatterns = [
     path('student/lessons/<int:cohort_id>/', views.student_lessons, name='student_lessons'),
     path('student/questions/<int:lesson_id>/', views.student_questions, name='student_questions'),
     path('submit_answers/<int:lesson_id>/', views.submit_answers, name='submit_answers'),
+    path('lesson/<int:lesson_id>/results/', views.view_results, name='view_results'),
 
 
 ]
