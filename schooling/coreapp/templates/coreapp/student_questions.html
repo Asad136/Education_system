@@ -25,6 +25,8 @@
                         <li>C: {{ question.questionmcqs.option_c }}</li>
                         <li>D: {{ question.questionmcqs.option_d }}</li>
                     </ul>
+                    <h3>Answer :</h3>
+                    {{question.questionmcqs.answer}}
                     
 
                 {% elif question.type == 'fill_in_blank' %}

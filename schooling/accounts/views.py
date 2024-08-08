@@ -3,9 +3,35 @@ from django.contrib.auth import login, authenticate, logout as auth_logout
 from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 from django.contrib.auth.decorators import login_required
 from .forms import SignUpForm, CustomPasswordChangeForm
+from coreapp.models import Cohort, Lesson, AssignCohort
+
+
+def index(request):
+    cohorts = Cohort.objects.all()
+    lessons = Lesson.objects.all()
+    return render(request, 'accounts/index.html', {
+            'cohorts': cohorts,
+            'lessons': lessons,
+        })
 
 def home(request):
-    return render(request,'accounts/home.html')
+    user = request.user
+    
+    if user.role == 'student':
+        assigned_cohorts = AssignCohort.objects.filter(user=user)
+        return render(request, 'accounts/home_student.html', {'assigned_cohorts': assigned_cohorts})
+    
+    elif user.role == 'teacher':
+        cohorts = Cohort.objects.all()
+        lessons = Lesson.objects.all()
+        students = AssignCohort.objects.all()
+        return render(request, 'accounts/home_teacher.html', {
+            'cohorts': cohorts,
+            'lessons': lessons,
+            'students': students,
+        })
+
+
 def signup_view(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
@@ -42,4 +68,22 @@ def password_change_view(request):
 @login_required
 def logout(request):
     auth_logout(request)
-    return redirect('home')
+    return render(request,'accounts/index.html')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

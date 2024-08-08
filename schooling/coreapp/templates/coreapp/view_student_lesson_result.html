@@ -1,0 +1,8 @@
+<h2>Results for {{ lesson.name }}</h2>
+<p>Student: {{ student.username }}</p>
+<p>Total Score: {{ total_score }}</p>
+<ul>
+    {% for result in score_results %}
+        <li>{{ result.question.statement }} - Marks: {{ result.marks }}</li>
+    {% endfor %}
+</ul>

@@ -1,0 +1,6 @@
+<h2>Lessons in {{ cohort.name }} for {{ student.username }}</h2>
+<ul>
+    {% for lesson in lessons %}
+        <li><a href="{% url 'view_student_lesson_result' student.id lesson.id %}">{{ lesson.name }}</a></li>
+    {% endfor %}
+</ul>

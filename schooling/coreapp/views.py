@@ -133,8 +133,6 @@ def ajax_load_form(request):
 
 @login_required
 def view_questions_for_lesson(request, lesson_id):
-    if request.user.role != 'teacher':
-        return HttpResponseForbidden("You do not have permission to access this page.")
     
     lesson = get_object_or_404(Lesson, id=lesson_id)
     questions = Question.objects.filter(lesson=lesson).select_related('questiontruefalse', 'questionmcqs', 'questionfillinblank')
@@ -235,4 +233,49 @@ def view_results(request, lesson_id):
         'lesson': lesson,
         'total_score': total_score,
         'score_results': score_results,
+    })
+
+
+@login_required
+def student_results(request):
+    if request.user.role != 'teacher':
+        return HttpResponseForbidden("You do not have permission to access this page.")
+
+    students = User.objects.filter(role='student')
+    return render(request, 'coreapp/student_results.html', {'students': students})
+
+@login_required
+def view_student_cohorts(request, student_id):
+    if request.user.role != 'teacher':
+        return HttpResponseForbidden("You do not have permission to access this page.")
+    
+    student = get_object_or_404(User, id=student_id, role='student')
+    assigned_cohorts = AssignCohort.objects.filter(user=student)
+    return render(request, 'coreapp/view_student_cohorts.html', {'student': student, 'assigned_cohorts': assigned_cohorts})
+
+@login_required
+def view_student_cohort_lessons(request, student_id, cohort_id):
+    if request.user.role != 'teacher':
+        return HttpResponseForbidden("You do not have permission to access this page.")
+    
+    student = get_object_or_404(User, id=student_id, role='student')
+    cohort = get_object_or_404(Cohort, id=cohort_id)
+    lessons = Lesson.objects.filter(cohort=cohort)
+    return render(request, 'coreapp/view_student_cohort_lessons.html', {'student': student, 'cohort': cohort, 'lessons': lessons})
+
+@login_required
+def view_student_lesson_result(request, student_id, lesson_id):
+    if request.user.role != 'teacher':
+        return HttpResponseForbidden("You do not have permission to access this page.")
+    
+    student = get_object_or_404(User, id=student_id, role='student')
+    lesson = get_object_or_404(Lesson, id=lesson_id)
+    score_results = ScoreResult.objects.filter(user=student, lesson=lesson)
+    total_score = sum(result.marks for result in score_results)
+
+    return render(request, 'coreapp/view_student_lesson_result.html', {
+        'student': student,
+        'lesson': lesson,
+        'score_results': score_results,
+        'total_score': total_score,
     })

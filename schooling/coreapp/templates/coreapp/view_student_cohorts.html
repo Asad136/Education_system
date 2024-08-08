@@ -1,0 +1,6 @@
+<h2>Cohorts assigned to {{ student.username }}</h2>
+<ul>
+    {% for cohort in assigned_cohorts %}
+        <li><a href="{% url 'view_student_cohort_lessons' student.id cohort.id %}">{{ cohort.cohort.name }}</a></li>
+    {% endfor %}
+</ul>
