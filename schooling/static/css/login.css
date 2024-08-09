@@ -13,7 +13,6 @@ header {
     width: 100%;
     top: 0;
     left: 0;
-    z-index: 1000;
 }
 
 .navbar {
@@ -93,7 +92,7 @@ form label {
 form input {
     width: 100%;
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid #6e2424;
     border-radius: 5px;
     box-sizing: border-box;
     font-size: 1rem;
@@ -132,7 +131,7 @@ form input:focus {
 }
 
 footer {
-    padding: 20px;
+    padding: 20px;  
     font-size: 0.9rem;
     color: #d1d8e0;
     background-color: #4b0082;

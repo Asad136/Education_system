@@ -134,3 +134,11 @@ button[type="submit"] {
 button[type="submit"]:hover {
     background-color: #007bff;
 }
+form textarea{
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #6e2424;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 1rem;
+}
