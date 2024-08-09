@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Details | Role-Based Educational Platform</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/details.css' %}">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <a href= "{% url 'index' %}" class="nav-link">Home</a>
+            <a href="{% url 'landing' %}"  class="nav-link">Details</a>
+            <div class="auth-buttons">
+                <a href="{% url 'login' %}" class="btn">Login</a>
+                <a href="{% url 'signup' %}" class="btn">Sign Up</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="intro">
+            <h1>Platform Overview</h1>
+            <p>
+                Our educational platform is designed to support a wide range of educational activities,
+                offering tools and resources tailored to the needs of Admins, Teachers, and Students.
+            </p>
+        </section>
+
+        <section class="roles">
+            <h2>Roles and Responsibilities</h2>
+            <div class="role">
+                <h3>Admin</h3>
+                <ul>
+                    <li>Create and manage teacher accounts</li>
+                    <li>Promote or demote users between student and teacher roles</li>
+                    <li>Edit user information</li>
+                    <li>Send email notifications with login credentials</li>
+                </ul>
+            </div>
+            <div class="role">
+                <h3>Teacher</h3>
+                <ul>
+                    <li>Create and manage classes</li>
+                    <li>Develop and manage lessons</li>
+                    <li>Create fill-in-the-blank, true/false, and multiple-choice questions</li>
+                    <li>Assign students to classes and provide answers for questions</li>
+                    <li>View student results for lessons and questions</li>
+                </ul>
+            </div>
+            <div class="role">
+                <h3>Student</h3>
+                <ul>
+                    <li>Attempt questions within lessons</li>
+                    <li>Receive automatic scoring and feedback</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        &copy; 2024 Role-Based Educational Platform. All Rights Reserved.
+    </footer>
+</body>
+</html>

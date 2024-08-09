@@ -1,40 +1,62 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Teacher Home</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Home | Role-Based Educational Platform</title>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'css/accounts.css' %}">
+    <link rel="stylesheet" href="{% static 'css/teacher_home.css' %}">
+
 </head>
 <body>
-    <h2>Welcome, {{ user.username }}!</h2>
-    
-    <h3> Classes</h3>
-    <ul>
-        {% for cohort in cohorts %}
-            <li>{{ cohort.name }}</li>
-        {% endfor %}
-    </ul>
-    <a href="{% url 'create_cohort' %}" class="btn">Create Cohort</a>
+    <header>
+        <nav class="navbar">
+            <a href="{% url 'logout' %}" class="btn logout-btn">Logout</a>
+        </nav>
+    </header>
+    <main>
+        <div class="container">
+            <h2>Welcome, {{ user.username }}!</h2>
 
-    <h3>Lessons</h3>
-    <ul>
-        {% for lesson in lessons %}
-            <a href="{% url 'student_questions' lesson.id%}"><li>{{ lesson.name }}</li></a>
-        {% endfor %}
-    </ul>
-    <a href="{% url 'create_lesson' %}" class="btn">Create Lesson</a>
+            <section>
+                <h3>Classes</h3>
+                <ul>
+                    {% for cohort in cohorts %}
+                        <li>{{ cohort.name }}</li>
+                    {% endfor %}
+                </ul>
+                <a href="{% url 'create_cohort' %}" class="btn">Create Cohort</a>
+            </section>
 
-    <h3>Assign Student to Cohort</h3>
-    <ul>
-        {% for student in students %}
-            <li>{{ student.user.username }} assigned to {{ student.cohort.name }}</li>
-        {% endfor %}
-    </ul>
-    <a href="{% url 'user_assigned_to_cohort' %}" class="btn">Assign Student to Cohort</a>
-    <a href="{% url 'student_results' %}" class="btn">Results of Students</a>
-    <a href="{% url 'create_question' %}" class="btn">Create Question</a>
-    <p><a href="{% url 'password_reset' %}" class="btn">Forgot your password?</a></p>
+            <section>
+                <h3>Lessons</h3>
+                <ul>
+                    {% for lesson in lessons %}
+                        <li><a href="{% url 'student_questions' lesson.id %}">{{ lesson.name }}</a></li>
+                    {% endfor %}
+                </ul>
+                <a href="{% url 'create_lesson' %}" class="btn">Create Lesson</a>
+            </section>
 
-    <a href="{% url 'logout' %}">Logout</a>
+            <section>
+                <h3>Assign Students to Cohorts</h3>
+                <ul>
+                    {% for student in students %}
+                        <li>{{ student.user.username }} assigned to {{ student.cohort.name }}</li>
+                    {% endfor %}
+                </ul>
+                <a href="{% url 'user_assigned_to_cohort' %}" class="btn">Assign Student to Cohort</a>
+            </section>
+
+            <section>
+                <a href="{% url 'student_results' %}" class="btn">Results of Students</a>
+                <a href="{% url 'create_question' %}" class="btn">Create Question</a>
+                <a href="{% url 'password_reset' %}" class="btn">Forgot your password?</a>
+            </section>
+        </div>
+    </main>
+    <footer>
+        &copy; 2024 Role-Based Educational Platform. All Rights Reserved.
+    </footer>
 </body>
 </html>

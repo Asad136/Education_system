@@ -3,19 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home | Role-Based Educational Platform</title>
+    <title>Landing | Role-Based Educational Platform</title>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'css/home.css' %}">
-   
+    <link rel="stylesheet" href="{% static 'css/landing.css' %}">
 </head>
 <body>
-    <h2>Welcome to Our Role-Based Educational Platform</h2>
-    <p>
-        This platform empowers Admins, Teachers, and Students with tools to manage educational content and assessments efficiently.
-        Admins can manage users and roles, Teachers can create classes, lessons, and quizzes, and Students can engage with the learning material.
-    </p>
-    <a href="{% url 'login' %}">Login</a>
-    <a href="{% url 'signup' %}">Sign Up</a>
+    <header>
+        <nav class="navbar">
+            <a href= "{% url 'index' %}"class="nav-link">Home</a>
+            <a href="{% url 'landing' %}" class="nav-link">Details</a>
+            <div class="auth-buttons">
+                <a href="{% url 'login' %}" class="btn">Login</a>
+                <a href="{% url 'signup' %}" class="btn">Sign Up</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Welcome to Our Role-Based Educational Platform</h1>
+                <p>
+                    Empowering Admins, Teachers, and Students with advanced tools for a seamless educational experience.
+                    Our platform offers a comprehensive suite of features for managing classes, lessons, and assessments.
+                </p>
+                <a href="{% url 'signup' %}" class="btn-main">Get Started</a>
+            </div>
+        </section>
+
+        <section class="features">
+            <h2>Features</h2>
+            <div class="feature">
+                <div class="feature-icon">👩‍💼</div>
+                <h3>For Admins</h3>
+                <p>Manage user roles, create teacher accounts, and oversee the entire platform.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">👨‍🏫</div>
+                <h3>For Teachers</h3>
+                <p>Create classes, lessons, and quizzes; track student progress and performance.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">👩‍🎓</div>
+                <h3>For Students</h3>
+                <p>Engage with lessons, attempt questions, and receive instant feedback.</p>
+            </div>
+        </section>
+    </main>
 
     <footer>
         &copy; 2024 Role-Based Educational Platform. All Rights Reserved.

@@ -13,6 +13,8 @@ def index(request):
             'cohorts': cohorts,
             'lessons': lessons,
         })
+def landing(request):
+     return render(request, 'accounts/detail_page.html')
 
 def home(request):
     user = request.user
