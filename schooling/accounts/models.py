@@ -8,3 +8,4 @@ class User(AbstractUser):
         ('admin', 'Admin'),
     )
     role = models.CharField(max_length=10, choices=ROLE_CHOICES, default='student')
+    password_expired = models.BooleanField(default=False)

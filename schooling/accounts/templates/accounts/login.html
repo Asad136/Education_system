@@ -2,6 +2,8 @@
 <html>
 <head>
     <title>Login</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/accounts.css' %}">
 </head>
 <body>
     <h2>Login</h2>
@@ -9,6 +11,7 @@
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Login</button>
+        <p><a href="{% url 'password_reset' %}">Forgot your password?</a></p>
     </form>
 </body>
 </html>

@@ -1,6 +1,22 @@
-<h2>Lessons in {{ cohort.name }} for {{ student.username }}</h2>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/student.css' %}">
+</head>
+<body>
+    <h2>Lessons in {{ cohort.name }} for {{ student.username }}</h2>
 <ul>
     {% for lesson in lessons %}
         <li><a href="{% url 'view_student_lesson_result' student.id lesson.id %}">{{ lesson.name }}</a></li>
     {% endfor %}
 </ul>
+<br>
+        <hr>
+            <a href="{% url 'home'%}">Home</a>
+</body>
+</html>

@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/teacher.css' %}">
     <title>Create Question</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
@@ -21,7 +23,10 @@
         <div id="dynamic_form"></div>
 
         <button type="submit">Save Question</button>
-    </form>
+        <br>
+        <hr>
+            <a href="{% url 'home'%}">Home</a>
+        </form>    
 
     <script>
         $(document).ready(function() {

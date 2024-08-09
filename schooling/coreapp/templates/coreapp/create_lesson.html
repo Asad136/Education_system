@@ -2,6 +2,8 @@
 <html>
 <head>
     <title>Create Lesson</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/teacher.css' %}">
 </head>
 <body>
     <h1>Create Lesson</h1>
@@ -9,6 +11,11 @@
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Create Lesson</button>
+        <br>
+    <hr>
+        <a href="{% url 'home'%}">Home</a>
     </form>
+    
+    
 </body>
 </html>

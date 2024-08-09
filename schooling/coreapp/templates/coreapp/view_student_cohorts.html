@@ -1,6 +1,21 @@
-<h2>Cohorts assigned to {{ student.username }}</h2>
-<ul>
-    {% for cohort in assigned_cohorts %}
-        <li><a href="{% url 'view_student_cohort_lessons' student.id cohort.id %}">{{ cohort.cohort.name }}</a></li>
-    {% endfor %}
-</ul>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/student.css' %}">
+</head>
+<body>
+    <h2>Cohorts assigned to {{ student.username }}</h2>
+    <ul>
+        {% for cohort in assigned_cohorts %}
+            <li><a href="{% url 'view_student_cohort_lessons' student.id cohort.id %}">{{ cohort.cohort.name }}</a></li>
+        {% endfor %}
+    </ul> 
+    <br>
+        <hr>
+            <a href="{% url 'home'%}">Home</a>
+</body>
+</html>

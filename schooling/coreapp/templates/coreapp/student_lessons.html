@@ -2,6 +2,8 @@
 <html>
 <head>
     <title>{{ cohort.name }} Lessons</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/teacher.css' %}">
 </head>
 <body>
     <h2>Lessons in {{ cohort.name }}</h2>
@@ -10,6 +12,9 @@
                 <li><a href="{% url 'view_questions_for_lesson' lesson.id %}">{{ lesson.name }}</a></li>
         {% endfor %}
     </ul>
+    <br>
+        <hr>
+            <a href="{% url 'home'%}">Home</a>
 </body>
 </html>
 

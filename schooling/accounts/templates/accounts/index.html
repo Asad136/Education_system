@@ -1,13 +1,24 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>home</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home | Role-Based Educational Platform</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+   
 </head>
 <body>
-    <h2>home</h2>
-    
-    <a href="{% url 'login'%}">login</a>
-    <a href="{% url 'signup'%}">signup</a>
+    <h2>Welcome to Our Role-Based Educational Platform</h2>
+    <p>
+        This platform empowers Admins, Teachers, and Students with tools to manage educational content and assessments efficiently.
+        Admins can manage users and roles, Teachers can create classes, lessons, and quizzes, and Students can engage with the learning material.
+    </p>
+    <a href="{% url 'login' %}">Login</a>
+    <a href="{% url 'signup' %}">Sign Up</a>
 
+    <footer>
+        &copy; 2024 Role-Based Educational Platform. All Rights Reserved.
+    </footer>
 </body>
 </html>

@@ -2,6 +2,8 @@
 <html>
 <head>
     <title>Student Home</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/accounts.css' %}">
 </head>
 <body>
     <h2>Welcome, {{ user.username }}!</h2>
@@ -13,6 +15,7 @@
             </li>
         {% endfor %}
     </ul>
+    <p><a href="{% url 'password_reset' %}" >Forgot your password?</a></p>
     <a href="{% url 'logout' %}">Logout</a>
 </body>
 </html>

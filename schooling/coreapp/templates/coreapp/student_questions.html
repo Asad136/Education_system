@@ -2,6 +2,8 @@
 <html>
 <head>
     <title>Questions for {{ lesson.name }}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/teacher.css' %}">
 </head>
 <body>
     <h1>Questions for {{ lesson.name }}</h1>
@@ -35,8 +37,9 @@
                 {% endif %}
             </div>
         {% endfor %}
-        <button type="submit">Submit</button>
+        <br>
+        <hr>
+            <a href="{% url 'home'%}">Home</a>
     </form>
-    <a href="{% url 'student_lessons' lesson.cohort.id %}">Back to Lessons</a>
 </body>
 </html>

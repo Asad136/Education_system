@@ -2,6 +2,8 @@
 <html>
 <head>
     <title>Questions for {{ lesson.name }}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/student.css' %}">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function(){
@@ -54,7 +56,11 @@
             </div>
         {% endfor %}
         <button type="submit">Submit</button>
+
     </form>
     <a href="{% url 'student_lessons' lesson.cohort.id %}">Back to Lessons</a>
+    <br>
+        <hr>
+            <a href="{% url 'home'%}">Home</a>
 </body>
 </html>

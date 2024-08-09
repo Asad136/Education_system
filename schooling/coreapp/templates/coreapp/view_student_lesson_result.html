@@ -1,4 +1,15 @@
-<h2>Results for {{ lesson.name }}</h2>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/student.css' %}">
+</head>
+<body>
+    <h2>Results for {{ lesson.name }}</h2>
 <p>Student: {{ student.username }}</p>
 <p>Total Score: {{ total_score }}</p>
 <ul>
@@ -6,3 +17,8 @@
         <li>{{ result.question.statement }} - Marks: {{ result.marks }}</li>
     {% endfor %}
 </ul>
+<br>
+        <hr>
+            <a href="{% url 'home'%}">Home</a>
+</body>
+</html>

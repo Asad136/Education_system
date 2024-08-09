@@ -2,6 +2,8 @@
 <html>
 <head>
     <title>View Classes</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/student.css' %}">
 </head>
 <body>
     <h1>Classes</h1>
@@ -12,5 +14,8 @@
             <li>No Classes available.</li>
         {% endfor %}
     </ul>
+    <br>
+        <hr>
+            <a href="{% url 'home'%}">Home</a>
 </body>
 </html>

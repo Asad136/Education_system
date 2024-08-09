@@ -1,6 +1,21 @@
-<h2>Select a Student</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/student.css' %}">
+</head>
+<body>
+    <h2>Select a Student</h2>
 <ul>
     {% for student in students %}
         <li><a href="{% url 'view_student_cohorts' student.id %}">{{ student.username }}</a></li>
     {% endfor %}
 </ul>
+<br>
+        <hr>
+            <a href="{% url 'home'%}">Home</a>
+</body>
+</html>

@@ -2,21 +2,8 @@
 <html>
 <head>
     <title>Teacher Home</title>
-    <style>
-        .btn {
-            display: inline-block;
-            padding: 10px 15px;
-            margin: 10px;
-            background-color: #007bff;
-            color: white;
-            text-align: center;
-            border-radius: 5px;
-            text-decoration: none;
-        }
-        .btn:hover {
-            background-color: #0056b3;
-        }
-    </style>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/accounts.css' %}">
 </head>
 <body>
     <h2>Welcome, {{ user.username }}!</h2>
@@ -32,7 +19,7 @@
     <h3>Lessons</h3>
     <ul>
         {% for lesson in lessons %}
-            <li>{{ lesson.name }}</li>
+            <a href="{% url 'student_questions' lesson.id%}"><li>{{ lesson.name }}</li></a>
         {% endfor %}
     </ul>
     <a href="{% url 'create_lesson' %}" class="btn">Create Lesson</a>
@@ -46,6 +33,8 @@
     <a href="{% url 'user_assigned_to_cohort' %}" class="btn">Assign Student to Cohort</a>
     <a href="{% url 'student_results' %}" class="btn">Results of Students</a>
     <a href="{% url 'create_question' %}" class="btn">Create Question</a>
+    <p><a href="{% url 'password_reset' %}" class="btn">Forgot your password?</a></p>
+
     <a href="{% url 'logout' %}">Logout</a>
 </body>
 </html>
