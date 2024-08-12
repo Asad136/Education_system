@@ -105,7 +105,8 @@ a {
 a:hover {
     color: #4b0082;
 }
-input[type="text"], input[type="password"], input[type="email"], select {
+
+input[type="text"], input[type="password"], input[type="email"], select, textarea {
     width: 100%;
     padding: 10px;
     margin: 10px 0;
@@ -120,25 +121,60 @@ input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focu
     outline: none;
 }
 
-button[type="submit"] {
-    width: 100%;
-    background-color: #4b0082;
-    color: white;
-    border: none;
-    padding: 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 10px;
-}
-
-button[type="submit"]:hover {
-    background-color: #007bff;
-}
-form textarea{
+form textarea {
     width: 100%;
     padding: 10px;
     border: 1px solid #6e2424;
     border-radius: 5px;
     box-sizing: border-box;
     font-size: 1rem;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    body {
+        margin: 5px;
+    }
+
+    form {
+        max-width: 90%;
+        padding: 15px;
+    }
+    
+    button, .btn, button[type="submit"] {
+        padding: 8px 12px;
+        font-size: 0.9rem;
+    }
+
+    h1, h2 {
+        font-size: 1.5rem;
+    }
+
+    h3 {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        margin: 2px;
+    }
+
+    form {
+        max-width: 100%;
+        padding: 10px;
+    }
+
+    button, .btn, button[type="submit"] {
+        padding: 6px 10px;
+        font-size: 0.8rem;
+    }
+
+    h1, h2 {
+        font-size: 1.2rem;
+    }
+
+    h3 {
+        font-size: 1rem;
+    }
 }

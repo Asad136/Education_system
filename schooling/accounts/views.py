@@ -14,7 +14,8 @@ def index(request):
             'lessons': lessons,
         })
 def landing(request):
-     return render(request, 'accounts/detail_page.html')
+    
+    return render(request, 'accounts/detail_page.html')
 
 def home(request):
     user = request.user
@@ -51,6 +52,9 @@ def login_view(request):
         if form.is_valid():
             user = form.get_user()
             login(request, user)
+            # request.session['user_id']= user.id
+            # request.session.set_expiry(60)
+            # print(request.session.get('user_id'))
             return redirect('home')
     else:
         form = AuthenticationForm()
@@ -70,6 +74,7 @@ def password_change_view(request):
 @login_required
 def logout(request):
     auth_logout(request)
+    # request.session.flush()
     return render(request,'accounts/index.html')
 
 
